@@ -6,6 +6,7 @@ import com.intigral.assignment.dto.BookRequestDto;
 import com.intigral.assignment.model.Book;
 import com.intigral.assignment.model.Rack;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,25 +32,25 @@ public class BookService {
     }
 
     public String addBook(BookRequestDto bookDto) throws Exception {
-//        if (isRackExist(bookDto.getRackId())) {
-//
-//        }
-        Rack rack = rackRepository.findById(bookDto.getRackId()).orElseThrow(() -> new Exception("rack id does not exist"));
-        Book bookObj = getBookEntityInstance(bookDto, rack);
-        // bookRepository.save(bookObj);
+
+        // book name should be unique
+        if (bookRepository.findByName(bookDto.getName()) != null) {
+            throw new BadRequestException("book name already exist");
+        }
+
+        // rack id should exist
+        Rack rack = rackRepository.findById(bookDto.getRackId()).orElseThrow(() -> new BadRequestException("rack id does not exist"));
+
+        Book book = getBookEntityInstance(bookDto, rack);
+        // bookRepository.save(book);
         return "Book added";
     }
-
-//    private boolean isRackExist(Integer rackId) {
-//        return rackRepository.findById(rackId).isEmpty();
-//    }
 
     private Book getBookEntityInstance(BookRequestDto bookDto, Rack rack) {
         Book bookObj = new Book();
         bookObj.setName(bookDto.getName());
         bookObj.setDescription(bookDto.getDescription());
-        bookObj.setRackId(bookDto.getRackId());
-        //bookObj.setRack(rack);
+        bookObj.setRack(rack);
         return bookObj;
     }
 }

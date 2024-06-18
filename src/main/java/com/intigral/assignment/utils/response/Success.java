@@ -1,4 +1,4 @@
-package com.intigral.assignment.utils;
+package com.intigral.assignment.utils.response;
 
 public record Success<T>(String status, T data) {
 }

@@ -1,4 +1,4 @@
-package com.intigral.assignment.utils;
+package com.intigral.assignment.utils.response;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

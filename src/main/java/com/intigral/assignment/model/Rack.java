@@ -12,7 +12,7 @@ public class Rack {
     Integer rowNumber;
     Integer columnNumber;
 
-    @Column(name = "library_fid")
-    Integer libraryId;
-    // Library library;
+    @ManyToOne()
+    @JoinColumn(name = "library_fid", nullable = false)
+    Library library;
 }
