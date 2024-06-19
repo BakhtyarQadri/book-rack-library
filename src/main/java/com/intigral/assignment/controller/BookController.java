@@ -18,10 +18,10 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping
-    private ResponseEntity addBook(@RequestBody BookRequestDto bookDto) {
+    private ResponseEntity addBook(@RequestBody BookRequestDto bookRequestDto) {
         try {
-            BookValidator.validateBookRequestDtoObj(bookDto);
-            String response = bookService.addBook(bookDto);
+            BookValidator.validateBookRequestDtoObj(bookRequestDto);
+            String response = bookService.addBook(bookRequestDto);
             return ApiResponse.success("success", response, HttpStatus.CREATED);
         } catch (BadRequestException exception) {
             return ApiResponse.failure(exception.getMessage(), HttpStatus.BAD_REQUEST);
