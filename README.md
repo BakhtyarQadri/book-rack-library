@@ -1,10 +1,28 @@
+# Steps to Run the Project
 
-# Steps to run the project
-- install jdk 21
-- install intellij
-- open terminal, run the command "git clone https://github.com/BakhtyarQadri/book-rack-library.git"
-- open the project in Intellij, build and run it
-- application will start and server will listen at port `8080`
+1. **Install JDK 21**
+   - Ensure you have JDK 21 installed on your machine. You can download it from the [official JDK website](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html).
+
+2. **Install IntelliJ IDEA**
+   - Download and install IntelliJ IDEA from the [official website](https://www.jetbrains.com/idea/download/).
+
+3. **Clone the Repository**
+   - Open your terminal and run the following command:
+     ```sh
+     git clone https://github.com/BakhtyarQadri/book-rack-library.git
+     ```
+
+4. **Open the Project in IntelliJ IDEA**
+   - Launch IntelliJ IDEA.
+   - Navigate to `File` > `Open` and select the cloned repository folder.
+   
+5. **Build and Run the Project**
+   - Once the project is opened, let IntelliJ finish indexing and downloading any required dependencies.
+   - Click on the `Run` button in IntelliJ or press `Shift + F10` to build and run the project.
+
+6. **Access the Application**
+   - The application will start, and the server will listen on port `8080`.
+   - Open your browser and navigate to `http://localhost:8080` to access the application.
 
 # Endpoints
 Following are the REST APIs of the book-rack-library application;
