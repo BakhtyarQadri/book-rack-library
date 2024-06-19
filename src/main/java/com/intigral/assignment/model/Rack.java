@@ -12,7 +12,8 @@ public class Rack {
     Integer rowNumber;
     Integer columnNumber;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "library_fid", nullable = false)
     Library library;
+
 }

@@ -17,34 +17,6 @@ public class BookController {
 
     private final BookService bookService;
 
-    @GetMapping
-    private ResponseEntity getBooks() {
-        try {
-            var response = bookService.getBooks();
-            return ApiResponse.success("success", response, HttpStatus.OK);
-        } catch (Exception exception) {
-            return ApiResponse.failure(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @GetMapping("issue")
-    private ResponseEntity getBooksIssue() {
-        try {
-            throw new Exception("error occured");
-        } catch (Exception exception) {
-            return ApiResponse.failure(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("{id}")
-    private ResponseEntity getBookById(@PathVariable Integer id) {
-        try {
-            var response = bookService.getBookById(id);
-            return ApiResponse.success("success", response, HttpStatus.OK);
-        } catch (Exception exception) {
-            return ApiResponse.failure(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @PostMapping
     private ResponseEntity addBook(@RequestBody BookRequestDto bookDto) {
         try {
@@ -53,6 +25,16 @@ public class BookController {
             return ApiResponse.success("success", response, HttpStatus.CREATED);
         } catch (BadRequestException exception) {
             return ApiResponse.failure(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception exception) {
+            return ApiResponse.failure(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping
+    private ResponseEntity getBooks() {
+        try {
+            var response = bookService.getBooks();
+            return ApiResponse.success("success", response, HttpStatus.OK);
         } catch (Exception exception) {
             return ApiResponse.failure(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
