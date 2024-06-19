@@ -63,7 +63,7 @@ INSERT INTO Library (name, start_time, end_time) VALUES
 ('City Library', '09:00:00', '21:00:00');
 
 -- Insert Data into Rack Table
-INSERT INTO Rack (library_id, row_number, column_number) VALUES 
+INSERT INTO Rack (library_id_fk, row_number, column_number) VALUES 
 (1, 1, 1),
 (1, 1, 2),
 (2, 1, 1),
