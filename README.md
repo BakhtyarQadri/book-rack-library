@@ -66,7 +66,7 @@ Returns message as text.
   - `{ "error": { "code": 400, "message": "rack id does not exist" } }` <br>
   - `{ "error": { "code": 500, "message": "exception message" } }` <br>
 
-## Status Codes
+# Status Codes
 
 Following are the possible status codes;
 
