@@ -17,7 +17,7 @@
    - Navigate to `File` > `Open` and select the cloned repository folder.
   
 5. **Create and Populate Database Tables**
-   - Ensure you have a running instance of a SQL database (e.g., MySQL, PostgreSQL).
+   - Ensure you have a running instance of a PostgreSQL database.
    - Execute the following SQL scripts to create and populate the `Library`, `Rack`, and `Book` tables.
 
 ### SQL Scripts
@@ -26,7 +26,7 @@
 ```sql
 -- Create Library Table
 CREATE TABLE Library (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL
@@ -34,20 +34,18 @@ CREATE TABLE Library (
 
 -- Create Rack Table
 CREATE TABLE Rack (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    library_id INT,
+    id SERIAL PRIMARY KEY,
+    library_id INT REFERENCES Library(id),
     row_number INT NOT NULL,
-    column_number INT NOT NULL,
-    FOREIGN KEY (library_id) REFERENCES Library(id)
+    column_number INT NOT NULL
 );
 
 -- Create Book Table
 CREATE TABLE Book (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    rack_id INT,
+    id SERIAL PRIMARY KEY,
+    rack_id INT REFERENCES Rack(id),
     name VARCHAR(255) NOT NULL,
-    description TEXT,
-    FOREIGN KEY (rack_id) REFERENCES Rack(id)
+    description TEXT
 );
 
 -- Indexes
