@@ -15,12 +15,68 @@
 4. **Open the Project in IntelliJ IDEA**
    - Launch IntelliJ IDEA.
    - Navigate to `File` > `Open` and select the cloned repository folder.
+  
+5. **Create and Populate Database Tables**
+   - Ensure you have a running instance of a SQL database (e.g., MySQL, PostgreSQL).
+   - Execute the following SQL scripts to create and populate the `Library`, `Rack`, and `Book` tables.
+
+### SQL Scripts
+
+#### Create Tables
+```sql
+-- Create Library Table
+CREATE TABLE Library (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL
+);
+
+-- Create Rack Table
+CREATE TABLE Rack (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    library_id INT,
+    row_number INT NOT NULL,
+    column_number INT NOT NULL,
+    FOREIGN KEY (library_id) REFERENCES Library(id)
+);
+
+-- Create Book Table
+CREATE TABLE Book (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    rack_id INT,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    FOREIGN KEY (rack_id) REFERENCES Rack(id)
+);
+
+-- Indexes
+CREATE INDEX idx_library_name ON Library (name);
+CREATE INDEX idx_rack_library_id ON Rack (library_id);
+CREATE INDEX idx_rack_location ON Rack (row_number, column_number);
+CREATE INDEX idx_book_name ON Book (name);
+CREATE INDEX idx_book_rack_id ON Book (rack_id);
+```
+#### Insert Data
+```sql
+-- Insert Data into Library Table
+INSERT INTO Library (name, start_time, end_time) VALUES 
+('Central Library', '08:00:00', '20:00:00'),
+('City Library', '09:00:00', '21:00:00');
+
+-- Insert Data into Rack Table
+INSERT INTO Rack (library_id, row_number, column_number) VALUES 
+(1, 1, 1),
+(1, 1, 2),
+(2, 1, 1),
+(2, 1, 2);
+```
    
-5. **Build and Run the Project**
+6. **Build and Run the Project**
    - Once the project is opened, let IntelliJ finish indexing and downloading any required dependencies.
    - Click on the `Run` button in IntelliJ or press `Shift + F10` to build and run the project.
 
-6. **Access the Application**
+7. **Access the Application**
    - The application will start, and the server will listen on port `8080`.
    - Open your browser and navigate to `http://localhost:8080` to access the application.
 
