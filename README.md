@@ -35,7 +35,7 @@ CREATE TABLE Library (
 -- Create Rack Table
 CREATE TABLE Rack (
     id SERIAL PRIMARY KEY,
-    library_id INT REFERENCES Library(id),
+    library_id_fk INT REFERENCES Library(id),
     row_number INT NOT NULL,
     column_number INT NOT NULL
 );
@@ -43,17 +43,17 @@ CREATE TABLE Rack (
 -- Create Book Table
 CREATE TABLE Book (
     id SERIAL PRIMARY KEY,
-    rack_id INT REFERENCES Rack(id),
+    rack_id_fk INT REFERENCES Rack(id),
     name VARCHAR(255) NOT NULL,
     description TEXT
 );
 
 -- Indexes
 CREATE INDEX idx_library_name ON Library (name);
-CREATE INDEX idx_rack_library_id ON Rack (library_id);
+CREATE INDEX idx_rack_library_id ON Rack (library_id_fk);
 CREATE INDEX idx_rack_location ON Rack (row_number, column_number);
 CREATE INDEX idx_book_name ON Book (name);
-CREATE INDEX idx_book_rack_id ON Book (rack_id);
+CREATE INDEX idx_book_rack_id ON Book (rack_id_fk);
 ```
 #### Insert Data
 ```sql
