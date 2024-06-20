@@ -100,7 +100,7 @@ Returns json data about all books.
   - `{ "status": "success", "data": [ { "bookId": 1, "bookName": "Chemistry", "bookDescription": "Matric class", "rackId": 1, "libraryName": "Quaid e Azam Library" } ] }` <br>
 
 - Error Response
-  - `{ "error": { "code": "SERVER_ERROR", "message": "exception message" } }` <br>
+  - `{ "error": { "code": "INTERNAL_SERVER_ERROR", "message": "exception message" } }` <br>
 
 ## Add a book
 Returns message as text.
