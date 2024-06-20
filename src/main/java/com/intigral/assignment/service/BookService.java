@@ -4,10 +4,11 @@ import com.intigral.assignment.dao.BookRepository;
 import com.intigral.assignment.dao.RackRepository;
 import com.intigral.assignment.dto.BookRequestDto;
 import com.intigral.assignment.dto.BookResponseDto;
+import com.intigral.assignment.exception.BadRequestException;
 import com.intigral.assignment.model.Book;
 import com.intigral.assignment.model.Rack;
+import com.intigral.assignment.utils.response.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class BookService {
     public String addBook(BookRequestDto bookRequestDto) throws Exception {
 
         // rack id should exist
-        Rack rack = rackRepository.findById(bookRequestDto.getRackId()).orElseThrow(() -> new BadRequestException("rack id does not exist"));
+        Rack rack = rackRepository.findById(bookRequestDto.getRackId()).orElseThrow(() -> new BadRequestException(ErrorCode.INVALID_RACK_ID, "rack id does not exist"));
 
         Book book = convertDtoToEntity(bookRequestDto, rack);
         bookRepository.save(book);

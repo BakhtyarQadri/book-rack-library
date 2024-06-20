@@ -21,9 +21,16 @@ public class ApiResponse {
         return new ResponseEntity<>(successResponse, httpStatus);
     }
 
-    public static ResponseEntity failure(String message, HttpStatus httpStatus) {
-        // log.error(message);
-        Error error = new Error(httpStatus.value(), message);
+    public static ResponseEntity failure(String errorMessage, HttpStatus httpStatus) {
+        // log.error(errorMessage);
+        Error error = new Error(ErrorCode.SERVER_ERROR, errorMessage);
+        ApiResponse errorResponse = new ApiResponse(error);
+        return new ResponseEntity<>(errorResponse, httpStatus);
+    }
+
+    public static ResponseEntity failure(ErrorCode errorCode, String errorMessage, HttpStatus httpStatus) {
+        // log.error(errorMessage);
+        Error error = new Error(errorCode, errorMessage);
         ApiResponse errorResponse = new ApiResponse(error);
         return new ResponseEntity<>(errorResponse, httpStatus);
     }
