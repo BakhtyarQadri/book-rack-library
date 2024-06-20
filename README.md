@@ -22,10 +22,15 @@
 
 ### SQL Scripts
 
+#### Create Schema
+```sql
+CREATE SCHEMA training_db;
+```
+
 #### Create Tables
 ```sql
 -- Create Library Table
-CREATE TABLE Library (
+CREATE TABLE training_db.Library (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     start_time TIME NOT NULL,
@@ -33,37 +38,37 @@ CREATE TABLE Library (
 );
 
 -- Create Rack Table
-CREATE TABLE Rack (
+CREATE TABLE training_db.Rack (
     id SERIAL PRIMARY KEY,
-    library_id_fk INT REFERENCES Library(id),
+    library_id_fk INT REFERENCES training_db.Library(id),
     row_number INT NOT NULL,
     column_number INT NOT NULL
 );
 
 -- Create Book Table
-CREATE TABLE Book (
+CREATE TABLE training_db.Book (
     id SERIAL PRIMARY KEY,
-    rack_id_fk INT REFERENCES Rack(id),
+    rack_id_fk INT REFERENCES training_db.Rack(id),
     name VARCHAR(255) NOT NULL,
     description TEXT
 );
 
 -- Indexes
-CREATE INDEX idx_library_name ON Library (name);
-CREATE INDEX idx_rack_library_id ON Rack (library_id_fk);
-CREATE INDEX idx_rack_location ON Rack (row_number, column_number);
-CREATE INDEX idx_book_name ON Book (name);
-CREATE INDEX idx_book_rack_id ON Book (rack_id_fk);
+CREATE INDEX idx_library_name ON training_db.Library (name);
+CREATE INDEX idx_rack_library_id ON training_db.Rack (library_id_fk);
+CREATE INDEX idx_rack_location ON training_db.Rack (row_number, column_number);
+CREATE INDEX idx_book_name ON training_db.Book (name);
+CREATE INDEX idx_book_rack_id ON training_db.Book (rack_id_fk);
 ```
 #### Insert Data
 ```sql
 -- Insert Data into Library Table
-INSERT INTO Library (name, start_time, end_time) VALUES 
+INSERT INTO training_db.Library (name, start_time, end_time) VALUES 
 ('Central Library', '08:00:00', '20:00:00'),
 ('City Library', '09:00:00', '21:00:00');
 
 -- Insert Data into Rack Table
-INSERT INTO Rack (library_id_fk, row_number, column_number) VALUES 
+INSERT INTO training_db.Rack (library_id_fk, row_number, column_number) VALUES 
 (1, 1, 1),
 (1, 1, 2),
 (2, 1, 1),
