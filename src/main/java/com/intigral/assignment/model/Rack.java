@@ -13,7 +13,7 @@ public class Rack {
     Integer columnNumber;
 
     @ManyToOne
-    @JoinColumn(name = "library_fid", nullable = false)
+    @JoinColumn(name = "library_id_fk", nullable = false)
     Library library;
 
 }

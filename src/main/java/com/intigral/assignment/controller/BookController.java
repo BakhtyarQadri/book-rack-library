@@ -18,7 +18,7 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping
-    private ResponseEntity addBook(@RequestBody BookRequestDto bookRequestDto) {
+    public ResponseEntity addBook(@RequestBody BookRequestDto bookRequestDto) {
         try {
             BookValidator.validateBookRequestDtoObj(bookRequestDto);
             String response = bookService.addBook(bookRequestDto);
@@ -31,7 +31,7 @@ public class BookController {
     }
 
     @GetMapping
-    private ResponseEntity getBooks() {
+    public ResponseEntity getBooks() {
         try {
             var response = bookService.getBooks();
             return ApiResponse.success("success", response, HttpStatus.OK);

@@ -13,7 +13,7 @@ public class Book {
     String description;
 
     @ManyToOne
-    @JoinColumn(name = "rack_fid", nullable = false)
+    @JoinColumn(name = "rack_id_fk", nullable = false)
     Rack rack;
 
 }
