@@ -24,13 +24,13 @@
 
 #### Create Schema
 ```sql
-CREATE SCHEMA training_db;
+CREATE SCHEMA assignment;
 ```
 
 #### Create Tables
 ```sql
 -- Create Library Table
-CREATE TABLE training_db.Library (
+CREATE TABLE assignment.Library (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     start_time TIME NOT NULL,
@@ -38,37 +38,37 @@ CREATE TABLE training_db.Library (
 );
 
 -- Create Rack Table
-CREATE TABLE training_db.Rack (
+CREATE TABLE assignment.Rack (
     id SERIAL PRIMARY KEY,
-    library_id_fk INT REFERENCES training_db.Library(id),
+    library_id_fk INT REFERENCES assignment.Library(id),
     row_number INT NOT NULL,
     column_number INT NOT NULL
 );
 
 -- Create Book Table
-CREATE TABLE training_db.Book (
+CREATE TABLE assignment.Book (
     id SERIAL PRIMARY KEY,
-    rack_id_fk INT REFERENCES training_db.Rack(id),
+    rack_id_fk INT REFERENCES assignment.Rack(id),
     name VARCHAR(255) NOT NULL,
     description TEXT
 );
 
 -- Indexes
-CREATE INDEX idx_library_name ON training_db.Library (name);
-CREATE INDEX idx_rack_library_id ON training_db.Rack (library_id_fk);
-CREATE INDEX idx_rack_location ON training_db.Rack (row_number, column_number);
-CREATE INDEX idx_book_name ON training_db.Book (name);
-CREATE INDEX idx_book_rack_id ON training_db.Book (rack_id_fk);
+CREATE INDEX idx_library_name ON assignment.Library (name);
+CREATE INDEX idx_rack_library_id ON assignment.Rack (library_id_fk);
+CREATE INDEX idx_rack_location ON assignment.Rack (row_number, column_number);
+CREATE INDEX idx_book_name ON assignment.Book (name);
+CREATE INDEX idx_book_rack_id ON assignment.Book (rack_id_fk);
 ```
 #### Insert Data
 ```sql
 -- Insert Data into Library Table
-INSERT INTO training_db.Library (name, start_time, end_time) VALUES 
+INSERT INTO assignment.Library (name, start_time, end_time) VALUES 
 ('Central Library', '08:00:00', '20:00:00'),
 ('City Library', '09:00:00', '21:00:00');
 
 -- Insert Data into Rack Table
-INSERT INTO training_db.Rack (library_id_fk, row_number, column_number) VALUES 
+INSERT INTO assignment.Rack (library_id_fk, row_number, column_number) VALUES 
 (1, 1, 1),
 (1, 1, 2),
 (2, 1, 1),
