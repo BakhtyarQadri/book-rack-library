@@ -24,7 +24,7 @@ public class BookService {
     public String addBook(BookRequestDto bookRequestDto) throws Exception {
 
         // rack id should exist
-        Rack rack = rackRepository.findById(bookRequestDto.getRackId()).orElseThrow(() -> new BadRequestException(ErrorCode.INVALID_RACK_ID, "rack id does not exist"));
+        Rack rack = rackRepository.findById(bookRequestDto.getRackId()).orElseThrow(() -> new BadRequestException(ErrorCode.RACK_ID_NOT_EXIST, "rack id does not exist"));
 
         Book book = convertDtoToEntity(bookRequestDto, rack);
         bookRepository.save(book);
