@@ -100,7 +100,7 @@ Returns json data about all books.
   - `{ "status": "success", "data": [ { "bookId": 1, "bookName": "Chemistry", "bookDescription": "Matric class", "rackId": 1, "libraryName": "Quaid e Azam Library" } ] }` <br>
 
 - Error Response
-  - `{ "error": { "code": 500, "message": "exception message" } }` <br>
+  - `{ "error": { "code": "SERVER_ERROR", "message": "exception message" } }` <br>
 
 ## Add a book
 Returns message as text.
@@ -118,12 +118,14 @@ Returns message as text.
   - `{ "status": "success", "data": "Book added" }`
 
 - Error Response
-  - `{ "error": { "code": 400, "message": "name shouldn't be missing / null / empty" } }` <br>
-  - `{ "error": { "code": 400, "message": "description shouldn't be missing / null" } }` <br>
-  - `{ "error": { "code": 400, "message": "rack id shouldn't be missing / null" } }` <br>
-  - `{ "error": { "code": 400, "message": "rack id shouldn't be less than 1" } }` <br>
-  - `{ "error": { "code": 400, "message": "rack id does not exist" } }` <br>
-  - `{ "error": { "code": 500, "message": "exception message" } }` <br>
+  - `{ "error": { "code": "MISSING_NAME", "message": "name shouldn't be missing / null / empty" } }` <br>
+  - `{ "error": { "code": "INVALID_NAME", "message": "name should only contains alphanumeric character" } }` <br>
+  - `{ "error": { "code": "MISSING_DESCRIPTION", "message": "description shouldn't be missing / null / empty" } }` <br>
+  - `{ "error": { "code": "INVALID_DESCRIPTION", "message": "description should only contains alphanumeric character" } }` <br>
+  - `{ "error": { "code": "MISSING_RACK_ID, "message": "rack id shouldn't be missing / null" } }` <br>
+  - `{ "error": { "code": "INVALID_RACK_ID", "message": "rack id shouldn't be less than 1" } }` <br>
+  - `{ "error": { "code": "INVALID_RACK_ID", "message": "rack id does not exist" } }` <br>
+  - `{ "error": { "code": "SERVER_ERROR", "message": "exception message" } }` <br>
 
 # Status Codes
 
