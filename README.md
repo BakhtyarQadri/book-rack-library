@@ -24,13 +24,13 @@
 
 #### Create Schema
 ```sql
-CREATE SCHEMA assignment;
+CREATE SCHEMA public;
 ```
 
 #### Create Tables
 ```sql
 -- Create Library Table
-CREATE TABLE assignment.Library (
+CREATE TABLE public.Library (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     start_time TIME NOT NULL,
@@ -38,37 +38,37 @@ CREATE TABLE assignment.Library (
 );
 
 -- Create Rack Table
-CREATE TABLE assignment.Rack (
+CREATE TABLE public.Rack (
     id SERIAL PRIMARY KEY,
-    library_id_fk INT REFERENCES assignment.Library(id),
+    library_id_fk INT REFERENCES public.Library(id),
     row_number INT NOT NULL,
     column_number INT NOT NULL
 );
 
 -- Create Book Table
-CREATE TABLE assignment.Book (
+CREATE TABLE public.Book (
     id SERIAL PRIMARY KEY,
-    rack_id_fk INT REFERENCES assignment.Rack(id),
+    rack_id_fk INT REFERENCES public.Rack(id),
     name VARCHAR(255) NOT NULL,
     description TEXT
 );
 
 -- Indexes
-CREATE INDEX idx_library_name ON assignment.Library (name);
-CREATE INDEX idx_rack_library_id ON assignment.Rack (library_id_fk);
-CREATE INDEX idx_rack_location ON assignment.Rack (row_number, column_number);
-CREATE INDEX idx_book_name ON assignment.Book (name);
-CREATE INDEX idx_book_rack_id ON assignment.Book (rack_id_fk);
+CREATE INDEX idx_library_name ON public.Library (name);
+CREATE INDEX idx_rack_library_id ON public.Rack (library_id_fk);
+CREATE INDEX idx_rack_location ON public.Rack (row_number, column_number);
+CREATE INDEX idx_book_name ON public.Book (name);
+CREATE INDEX idx_book_rack_id ON public.Book (rack_id_fk);
 ```
 #### Insert Data
 ```sql
 -- Insert Data into Library Table
-INSERT INTO assignment.Library (name, start_time, end_time) VALUES 
+INSERT INTO public.Library (name, start_time, end_time) VALUES 
 ('Central Library', '08:00:00', '20:00:00'),
 ('City Library', '09:00:00', '21:00:00');
 
 -- Insert Data into Rack Table
-INSERT INTO assignment.Rack (library_id_fk, row_number, column_number) VALUES 
+INSERT INTO public.Rack (library_id_fk, row_number, column_number) VALUES 
 (1, 1, 1),
 (1, 1, 2),
 (2, 1, 1),
