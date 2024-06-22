@@ -96,7 +96,7 @@ Returns json data about all books.
 - Request 'http://localhost:8080/api/book' <br>
 
 - Success Response
-  - `{ "status": "success", "data": "No book exist" }` <br>
+  - `{ "status": "success", "data": [] }` <br>
   - `{ "status": "success", "data": [ { "bookId": 1, "bookName": "Chemistry", "bookDescription": "Matric class", "rackId": 1, "libraryName": "Quaid e Azam Library" } ] }` <br>
 
 - Error Response
