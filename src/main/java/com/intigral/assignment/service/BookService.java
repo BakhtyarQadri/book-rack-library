@@ -11,8 +11,7 @@ import com.intigral.assignment.utils.response.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -24,36 +23,32 @@ public class BookService {
     public String addBook(BookRequestDto bookRequestDto) throws Exception {
 
         // rack id should exist
-        Rack rack = rackRepository.findById(bookRequestDto.getRackId()).orElseThrow(() -> new BadRequestException(ErrorCode.RACK_ID_NOT_EXIST, "rack id does not exist"));
+        Rack rack = rackRepository.findById(bookRequestDto.rackId()).orElseThrow(() -> new BadRequestException(ErrorCode.RACK_ID_NOT_EXIST, "rack id does not exist"));
 
         Book book = convertDtoToEntity(bookRequestDto, rack);
         bookRepository.save(book);
         return "Book added";
     }
 
-    public Object getBooks() {
-        List<Book> books = bookRepository.findAll();
-        return books.isEmpty() ? "No book exist" : convertEntityToDto(books);
-    }
-
     private Book convertDtoToEntity(BookRequestDto bookRequestDto, Rack rack) {
         Book bookObj = new Book();
-        bookObj.setName(bookRequestDto.getName());
-        bookObj.setDescription(bookRequestDto.getDescription());
+        bookObj.setName(bookRequestDto.name());
+        bookObj.setDescription(bookRequestDto.description());
         bookObj.setRack(rack);
         return bookObj;
+    }
+
+    public List<BookResponseDto> getBooks() {
+        List<Book> books = bookRepository.findAll();
+        return convertEntityToDto(books);
     }
 
     private List<BookResponseDto> convertEntityToDto(List<Book> books) {
         List<BookResponseDto> bookResponseDtos = new ArrayList<>();
         for (Book book : books) {
-            BookResponseDto bookResponseDto = new BookResponseDto();
-            bookResponseDto.setBookId(book.getId());
-            bookResponseDto.setBookName(book.getName());
-            bookResponseDto.setBookDescription(book.getDescription());
-            bookResponseDto.setRackId(book.getRack().getId());
-            bookResponseDto.setLibraryName(book.getRack().getLibrary().getName());
-            bookResponseDtos.add(bookResponseDto);
+            bookResponseDtos.add(
+                new BookResponseDto(book.getId(), book.getName(), book.getDescription(), book.getRack().getId(), book.getRack().getLibrary().getName())
+            );
         }
         return bookResponseDtos;
     }
