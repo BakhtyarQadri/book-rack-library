@@ -96,8 +96,8 @@ Returns json data about all books.
 - Request 'http://localhost:8080/api/book' <br>
 
 - Success Response
-  - `{ "status": "success", "data": [] }` <br>
-  - `{ "status": "success", "data": [ { "bookId": 1, "bookName": "Chemistry", "bookDescription": "Matric class", "rackId": 1, "libraryName": "Quaid e Azam Library" } ] }` <br>
+  - `{ "status": "SUCCESS", "data": [] }` <br>
+  - `{ "status": "SUCCESS", "data": [ { "bookId": 1, "bookName": "Chemistry", "bookDescription": "Matric class", "rackId": 1, "libraryName": "Quaid e Azam Library" } ] }` <br>
 
 - Error Response
   - `{ "error": { "code": "INTERNAL_SERVER_ERROR", "message": "exception message" } }` <br>
@@ -115,7 +115,7 @@ Returns message as text.
   - `{ "name": "Chemistry", "description": "Matric class", "rackId": 1 }`
 
 - Success Response
-  - `{ "status": "success", "data": "Book added" }`
+  - `{ "status": "SUCCESS", "data": "Book added" }`
 
 - Error Response
   - `{ "error": { "code": "MISSING_NAME", "message": "name shouldn't be missing / null / empty" } }` <br>
