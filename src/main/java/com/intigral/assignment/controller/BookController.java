@@ -26,7 +26,7 @@ public class BookController {
         try {
             BookValidator.validateAddBookRequest(bookRequestDto);
             String response = bookService.addBook(bookRequestDto);
-            return ApiResponse.success("success", response, HttpStatus.CREATED);
+            return ApiResponse.success(response, HttpStatus.CREATED);
         } catch (BadRequestException exception) {
             return ApiResponse.failure(exception.getErrorCode(), exception.getErrorMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception exception) {
@@ -38,7 +38,7 @@ public class BookController {
     public ResponseEntity getBooks() {
         try {
             List<BookResponseDto> response = bookService.getBooks();
-            return ApiResponse.success("success", response, HttpStatus.OK);
+            return ApiResponse.success(response, HttpStatus.OK);
         } catch (Exception exception) {
             return ApiResponse.failure(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
