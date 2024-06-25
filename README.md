@@ -70,8 +70,14 @@ INSERT INTO public.Library (name, start_time, end_time) VALUES
 INSERT INTO public.Rack (library_id_fk, row_number, column_number) VALUES 
 (1, 1, 1),
 (1, 1, 2),
+(1, 1, 3),
+(1, 1, 4),
+(1, 1, 5),
 (2, 1, 1),
-(2, 1, 2);
+(2, 1, 2),
+(2, 1, 3),
+(2, 1, 4),
+(2, 1, 5);
 ```
    
 6. **Build and Run the Project**
