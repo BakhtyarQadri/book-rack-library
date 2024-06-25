@@ -56,7 +56,6 @@ CREATE TABLE public.Book (
 -- Indexes
 CREATE INDEX idx_library_name ON public.Library (name);
 CREATE INDEX idx_rack_library_id ON public.Rack (library_id_fk);
-CREATE INDEX idx_rack_location ON public.Rack (row_number, column_number);
 CREATE INDEX idx_book_name ON public.Book (name);
 CREATE INDEX idx_book_rack_id ON public.Book (rack_id_fk);
 ```
