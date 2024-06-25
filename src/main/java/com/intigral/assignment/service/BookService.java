@@ -22,7 +22,12 @@ public class BookService {
 
     public String addBook(BookRequestDto bookRequestDto) throws Exception {
 
-        // rack id should exist
+        // rack id should not exist in "Book"
+        if (bookRepository.findByRackId(bookRequestDto.rackId()).isPresent()) {
+            throw new BadRequestException(ErrorCode.RACK_ID_ALREADY_ALLOCATED, "rack id already allocated");
+        }
+
+        // rack id should exist in "Rack"
         Rack rack = rackRepository.findById(bookRequestDto.rackId()).orElseThrow(() -> new BadRequestException(ErrorCode.RACK_ID_NOT_EXIST, "rack id does not exist"));
 
         Book book = convertDtoToEntity(bookRequestDto, rack);

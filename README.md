@@ -129,6 +129,7 @@ Returns message as text.
   - `{ "error": { "code": "INVALID_DESCRIPTION", "message": "description should only contains alphanumeric character" } }` <br>
   - `{ "error": { "code": "MISSING_RACK_ID, "message": "rack id shouldn't be missing / null" } }` <br>
   - `{ "error": { "code": "INVALID_RACK_ID", "message": "rack id shouldn't be less than 1" } }` <br>
+  - `{ "error": { "code": "RACK_ID_ALREADY_ALLOCATED", "message": "rack id already allocated" } }` <br>
   - `{ "error": { "code": "RACK_ID_NOT_EXIST", "message": "rack id does not exist" } }` <br>
   - `{ "error": { "code": "INTERNAL_SERVER_ERROR", "message": "exception message" } }` <br>
 
