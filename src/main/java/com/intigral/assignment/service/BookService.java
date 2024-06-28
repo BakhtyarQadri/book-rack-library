@@ -9,6 +9,8 @@ import com.intigral.assignment.model.Book;
 import com.intigral.assignment.model.Rack;
 import com.intigral.assignment.utils.response.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -46,6 +48,12 @@ public class BookService {
     public List<BookResponseDto> getBooks() {
         List<Book> books = bookRepository.findAll();
         return convertEntityToDto(books);
+    }
+
+    public List<Book> getBooks(Integer pageNo, Integer pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
+        Page<Book> pageBooks = bookRepository.findAll(pageRequest);
+        return pageBooks.getContent();
     }
 
     private List<BookResponseDto> convertEntityToDto(List<Book> books) {
