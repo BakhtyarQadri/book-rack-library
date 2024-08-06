@@ -15,6 +15,7 @@
 4. **Open the Project in IntelliJ IDEA**
    - Launch IntelliJ IDEA.
    - Navigate to `File` > `Open` and select the cloned repository folder.
+   - Verify the PostgreSQL credentials in resources/application.properties file.
   
 5. **Create and Populate Database Tables**
    - Ensure you have a running instance of a PostgreSQL database.
@@ -22,8 +23,9 @@
 
 ### SQL Scripts
 
-#### Create Schema
+#### Create Database & Schema
 ```sql
+CREATE DATABASE training_db;
 CREATE SCHEMA public;
 ```
 
